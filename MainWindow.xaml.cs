@@ -23,7 +23,9 @@ namespace market
 
         private void AddButton(object sender, RoutedEventArgs e)
         {
-
+            EditWindow editWindow = new EditWindow();
+            editWindow.edit.Content = "Добавить";
+            editWindow.ShowDialog();
         }
 
         private void DelButton(object sender, RoutedEventArgs e)
@@ -33,7 +35,9 @@ namespace market
 
         private void ChangeButton(object sender, RoutedEventArgs e)
         {
-
+            EditWindow editWindow = new EditWindow();
+            editWindow.edit.Content = "изменить";
+            editWindow.ShowDialog();
         }
     }
 }

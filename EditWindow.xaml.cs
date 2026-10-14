@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -24,7 +25,17 @@ namespace market
 
         private void changeButton(object sender, RoutedEventArgs e)
         {
+            
+        }
 
+        private void UploadImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Изображения (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                ProductImage.Source = new BitmapImage(new Uri(openFileDialog.FileName));
+            }
         }
     }
 }
