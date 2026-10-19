@@ -13,21 +13,26 @@ using System.Windows.Shapes;
 
 namespace market
 {
-    /// <summary>
-    /// Логика взаимодействия для EditWindow.xaml
-    /// </summary>
     public partial class EditWindow : Window
     {
+        public Product? NewProduct { get; private set; }
+
         public EditWindow()
         {
-            InitializeComponent();
-        }
-
+            InitializeComponent(); 
+        } 
         private void changeButton(object sender, RoutedEventArgs e)
         {
-            
+            NewProduct = new Product
+            {
+                Name = NameTxt.Text,
+                Price = int.TryParse(PriceTxt.Text, out int price)? price : 0,
+                Count = int.TryParse(CountTxt.Text, out int count) ? count : 0,
+                Description = DescTxt.Text,
+                Image = (ProductImage.Source as BitmapImage)?.UriSource?.LocalPath
+            };
+            this.DialogResult = true;
         }
-
         private void UploadImage_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();

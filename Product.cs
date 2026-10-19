@@ -5,23 +5,23 @@ using System.Text;
 
 namespace market
 {
-    internal class Product
+    public class Product
     {
-        int Id;
-        string? Name;
-        int price;
-        string? description;
-        int count;
-        Image? image;
-
-        public Product(int Id, string? Name, int price, string? description, int count, Image? image)
+        public int Id;
+        public string? Name;
+        public int Price;
+        public string? Description;
+        public int Count;
+        public String? Image;
+        public Product() { }
+        public Product(int id, string? name, int price, string? description, int count, String? image)
         {
-            this.Id = Id;
-            this.Name = Name;
-            this.price = price;
-            this.description = description;
-            this.count = count;
-            this.image = image;
+            this.Id = id;
+            this.Name = name;
+            this.Price = price;
+            this.Description = description;
+            this.Count = count;
+            this.Image = image;
         }
     }
 }
