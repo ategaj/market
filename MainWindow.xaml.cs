@@ -24,25 +24,36 @@ namespace market
 
         private void AddButton(object sender, RoutedEventArgs e)
         {
-            EditWindow editWindow = new EditWindow();
-            editWindow.edit.Content = "Добавить";
-            if (editWindow.ShowDialog() == true && editWindow.NewProduct != null)
-            {
-                editWindow.NewProduct.Id = products.Count == 0 ? 1 : products.Max(p => p.Id) + 1;
-                products.Add(editWindow.NewProduct);
-            }
+                EditWindow editWindow = new EditWindow();
+                editWindow.edit.Content = "Добавить";
+                if (editWindow.ShowDialog() == true && editWindow.NewProduct != null)
+                {
+                    editWindow.NewProduct.Id = products.Count == 0 ? 1 : products.Max(p => p.Id) + 1;
+                    products.Add(editWindow.NewProduct);
+                }
         }
 
         private void DelButton(object sender, RoutedEventArgs e)
         {
-
+            Product s = (Product)ProductListBox.SelectedItem;
+            products.Remove(s);
         }
 
         private void ChangeButton(object sender, RoutedEventArgs e)
         {
+            Product selected = (Product)ProductListBox.SelectedItem;
             EditWindow editWindow = new EditWindow();
             editWindow.edit.Content = "Изменить";
-            editWindow.ShowDialog();
+            if (editWindow.ShowDialog() == true && editWindow.NewProduct != null)
+            {
+                selected.Name = editWindow.NewProduct.Name;
+                selected.Price = editWindow.NewProduct.Price;
+                selected.Count = editWindow.NewProduct.Count;
+                selected.Description = editWindow.NewProduct.Description;
+                selected.Image = editWindow.NewProduct.Image;
+
+                ProductListBox.Items.Refresh();
+            }
         }
     }
 }

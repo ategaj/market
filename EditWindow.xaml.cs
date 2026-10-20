@@ -21,22 +21,50 @@ namespace market
         {
             InitializeComponent(); 
         } 
+        private void valid(string[] strings)
+        {
+            for(int i = 0; i < strings.Length; i++)
+            {
+                if (string.IsNullOrEmpty(strings[i]))
+                {
+                    throw new Exception("Заполните поля!!!");
+                }
+            }
+        }
         private void changeButton(object sender, RoutedEventArgs e)
         {
-            NewProduct = new Product
+            try
             {
-                Name = NameTxt.Text,
-                Price = int.TryParse(PriceTxt.Text, out int price)? price : 0,
-                Count = int.TryParse(CountTxt.Text, out int count) ? count : 0,
-                Description = DescTxt.Text,
-                Image = (ProductImage.Source as BitmapImage)?.UriSource?.LocalPath
-            };
-            this.DialogResult = true;
+                string[] s = { NameTxt.Text, PriceTxt.Text, CountTxt.Text, DescTxt.Text };
+                valid(s);
+                if (!int.TryParse(PriceTxt.Text, out int price) || !int.TryParse(CountTxt.Text, out int count))
+                {
+                    throw new Exception("Цена и количество должны быть числом!!!");
+                }
+                else if(price <= 0 || count <= 0)
+                {
+                    throw new Exception("Цена и количество не могут быть нулевыми или отрицательными!!!");
+                }
+                NewProduct = new Product
+                {
+                    Name = NameTxt.Text,
+                    Price = price,
+                    Count = count,
+                    Description = DescTxt.Text,
+                    Image = (ProductImage.Source as BitmapImage)?.UriSource?.LocalPath
+
+                };
+                this.DialogResult = true;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void UploadImage_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Изображения (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png";
+            openFileDialog.Filter = "*.jpg;*.jpeg;*.png";
             if (openFileDialog.ShowDialog() == true)
             {
                 ProductImage.Source = new BitmapImage(new Uri(openFileDialog.FileName));
