@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -44,6 +45,11 @@ namespace market
             Product selected = (Product)ProductListBox.SelectedItem;
             EditWindow editWindow = new EditWindow();
             editWindow.edit.Content = "Изменить";
+            editWindow.NameTxt.Text = selected.Name;
+            editWindow.PriceTxt.Text = selected.Price.ToString();
+            editWindow.CountTxt.Text = selected.Count.ToString();
+            editWindow.DescTxt.Text = selected.Description;
+            editWindow.ProductImage.Source = new BitmapImage(new Uri(selected.Image));
             if (editWindow.ShowDialog() == true && editWindow.NewProduct != null)
             {
                 selected.Name = editWindow.NewProduct.Name;

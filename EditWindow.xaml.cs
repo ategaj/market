@@ -64,7 +64,7 @@ namespace market
         private void UploadImage_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "*.jpg;*.jpeg;*.png";
+            openFileDialog.Filter = "Изображения (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png";
             if (openFileDialog.ShowDialog() == true)
             {
                 ProductImage.Source = new BitmapImage(new Uri(openFileDialog.FileName));
