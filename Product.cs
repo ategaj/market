@@ -7,12 +7,12 @@ namespace market
 {
     public class Product
     {
-        public int Id;
-        public string? Name;
-        public int Price;
-        public string? Description;
-        public int Count;
-        public String? Image;
+        public int Id { get; set; }
+        public string? Name { get; set; }
+        public int Price { get; set; }
+        public string? Description { get; set; }
+        public int Count { get; set; }
+        public string? Image { get; set; }
         public Product() { }
         public Product(int id, string? name, int price, string? description, int count, String? image)
         {

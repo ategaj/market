@@ -31,12 +31,22 @@ namespace market
                 }
             }
         }
+        private void validName(string name)
+        {
+            foreach (char c in name)
+            {
+                if (!char.IsLetter(c) && c != ' ' && c != '-')
+                    throw new Exception("Название может содержать только буквы, пробел и дефис!!!");
+            }
+        }
         private void changeButton(object sender, RoutedEventArgs e)
         {
             try
             {
                 string[] s = { NameTxt.Text, PriceTxt.Text, CountTxt.Text, DescTxt.Text };
                 valid(s);
+                string w =  NameTxt.Text;
+                validName(w);
                 if (!int.TryParse(PriceTxt.Text, out int price) || !int.TryParse(CountTxt.Text, out int count))
                 {
                     throw new Exception("Цена и количество должны быть числом!!!");
@@ -53,7 +63,7 @@ namespace market
                     Description = DescTxt.Text,
                     Image = (ProductImage.Source as BitmapImage)?.UriSource?.LocalPath
 
-                };
+                }; 
                 this.DialogResult = true;
             }
             catch(Exception ex)
