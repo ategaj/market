@@ -27,7 +27,6 @@ namespace market
             editWindow.edit.Content = "Добавить";
             if (editWindow.ShowDialog() == true && editWindow.NewProduct != null)
             {
-                editWindow.NewProduct.Id = products.Count == 0 ? 1 : products.Max(p => p.Id) + 1;
                 products.Add(editWindow.NewProduct);
             }
         }
@@ -41,7 +40,7 @@ namespace market
         private void ChangeButton(object sender, RoutedEventArgs e)
         {
             Product selected = (Product)ProductListBox.SelectedItem;
-            if (selected != null)
+            if ( selected != null)
             {
                 EditWindow editWindow = new EditWindow();
                 editWindow.edit.Content = "Изменить";

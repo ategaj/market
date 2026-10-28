@@ -45,8 +45,7 @@ namespace market
             {
                 string[] s = { NameTxt.Text, PriceTxt.Text, CountTxt.Text, DescTxt.Text };
                 valid(s);
-                string w =  NameTxt.Text;
-                validName(w);
+                validName(NameTxt.Text);
                 if (!int.TryParse(PriceTxt.Text, out int price) || !int.TryParse(CountTxt.Text, out int count))
                 {
                     throw new Exception("Цена и количество должны быть числом!!!");
