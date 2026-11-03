@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-﻿
-=======
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -67,7 +64,7 @@ namespace market
         private void UploadImage_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Изображения (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png";
+            openFileDialog.Filter = "*.jpg;*.jpeg;*.png";
             if (openFileDialog.ShowDialog() == true)
             {
                 ProductImage.Source = new BitmapImage(new Uri(openFileDialog.FileName));
@@ -75,4 +72,3 @@ namespace market
         }
     }
 }
->>>>>>> 25c7808f75aab4140c95b9c6834bcb9e68915d9b
